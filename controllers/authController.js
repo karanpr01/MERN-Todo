@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { User } from "../models/user.js";    
+import User  from "../models/user.js";    
 import generateToken from "../utils/generateToken.js";
 
 export const registerUser = async (req, res) => {
@@ -56,7 +56,7 @@ export const loginUser = async (req, res) => {
     const token = generateToken(user);
     res.cookie("token", token, { httpOnly: true });
 
-    return res.status(200).json({ success: true, message: `Welcome ${user.name}` });
+    return res.status(200).json({ success: true, message: `Welcome ${user.name}`, token: token });
   } catch (err) {
     console.error("loginUser error:", err);
     return res.status(500).json({ success: false, message: err.message });
