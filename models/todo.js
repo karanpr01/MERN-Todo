@@ -21,10 +21,14 @@ const todoSchema = new mongoose.Schema(
       type: Date,
       required: true,
     },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    }
   },
-  {
-    timestamps: true, 
-  }
+  { timestamps: true }
 );
 
-export const Todo = mongoose.model("Todo", todoSchema);
+const Todo = mongoose.model("Todo", todoSchema);
+export default Todo;
